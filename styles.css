@@ -145,3 +145,7 @@ body {
     opacity: 0;
     transition: opacity 1s ease-in-out;
 }
+
+.extra-info {
+    margin-top: 20px;
+}

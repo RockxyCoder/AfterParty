@@ -1,29 +1,31 @@
-/* styles.css */
-
 body {
-    background-color: black;
+    background: black;
     color: red;
     font-family: 'Courier New', monospace;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     height: 100vh;
     overflow: hidden;
     text-align: center;
-    padding: 0;
-    margin: 0;
 }
 
 .container {
+    opacity: 0;
+    animation: fadeIn 3s forwards;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .typewriter {
-    font-size: 2.5rem;
+    font-size: 2rem;
     white-space: nowrap;
     overflow: hidden;
     border-right: 2px solid red;
@@ -39,54 +41,13 @@ body {
     50% { border-color: transparent; }
 }
 
-.countdown {
-    font-size: 3rem;
-    color: red;
-    margin-top: 20px;
-    text-shadow: 0 0 15px red;
+.fade-out {
+    animation: fadeOut 1s forwards;
 }
 
-.anonymous-section {
-    display: none;
-    text-align: center;
-    margin-bottom: 20px;
-    opacity: 0;
-    animation: fadeInUp 1.5s ease-in-out forwards;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.hosts {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    width: 100%;
-    margin-top: 20px;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.host {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.host img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 5px;
-    object-fit: cover;
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
 }
 
 .details {
@@ -99,42 +60,88 @@ body {
     align-items: center;
 }
 
-.details a {
-    display: inline-block;
+.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.details a, .details div {
+    display: block;
     margin: 10px 0;
-    padding: 10px 20px;
-    font-size: 1.5rem;
-    color: red;
+    font-size: 1.8rem;
     text-decoration: none;
-    border: 2px solid red;
-    border-radius: 8px;
-    transition: all 0.3s ease-in-out;
+    color: red;
+    transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
 
-.details a:hover {
-    color: white;
-    transform: scale(1.1);
-}
-
-.extra-info div {
-    font-size: 1.3rem;
+.details a:hover, .details div:hover {
+    transform: scale(1.1) rotate(-2deg);
+    text-shadow: 0 0 20px red;
 }
 
 .lund {
-    margin-top: 30px;
-    font-size: 1.5rem;
+    margin-top: 50px;
+    font-size: 2rem;
     font-weight: bold;
-    color: red;
-    letter-spacing: 2px;
+    letter-spacing: 5px;
     text-transform: uppercase;
-    text-shadow: 0 0 10px red;
+    color: red;
+    text-shadow: 0 0 15px red;
+    transition: transform 0.3s ease-in-out;
 }
 
-.fade-out {
-    animation: fadeOut 1s forwards;
+.lund:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 25px red;
 }
 
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
+.hosts {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.host img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+
+.host div {
+    font-size: 1.5rem;
+}
+
+.song-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    color: red;
+    font-size: 1.5rem;
+    text-decoration: none;
+    margin-left: -40px;
+}
+
+.song-button:hover {
+    color: white;
+}
+
+.countdown {
+    font-size: 2rem;
+    margin-top: 20px;
+    color: red;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
 }

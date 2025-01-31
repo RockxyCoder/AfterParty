@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>After-Party 2025</title>
+    <style>
+        body {
+            background: black;
+            color: red;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+            transition: background 2s ease-in-out;
+        }
+        .container {
+            opacity: 0;
+            animation: fadeIn 3s forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .typewriter {
+            font-size: 2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid red;
+            animation: typing 3s steps(20, end), blink 0.7s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+        .fade-out {
+            animation: fadeOut 1s forwards;
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        .details {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+            margin-top: 50px;
+        }
+        .show {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .details a, .details div {
+            display: block;
+            margin: 40px 0;
+            font-size: 1.8rem;
+            text-decoration: none;
+            color: red;
+            transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+        }
+        .details a:hover, .details div:hover {
+            transform: scale(1.1) rotate(-2deg);
+            text-shadow: 0 0 20px red;
+        }
+        .lund {
+            margin-top: 50px;
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: red;
+            text-shadow: 0 0 15px red;
+            transition: transform 0.3s ease-in-out;
+        }
+        .lund:hover {
+            transform: scale(1.1);
+            text-shadow: 0 0 25px red;
+        }
+        .hosts {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .host {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: red;
+            font-size: 1.5rem;
+            text-shadow: 0 0 10px red;
+        }
+        .host img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: red;
+        }
+        .hosts.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="typewriter" id="title">After-Party 2025</div>
+        <div class="details">
+            <a href="#">🎵 Suggest Songs</a>
+            <div>⏳ Time: 11:00 PM</div>
+            <div>📍 Place: Undisclosed Location</div>
+            <div class="lund">Lund Corporation</div>
+        </div>
+    </div>
+
+    <div class="hosts">
+        <div class="host" id="host1">
+            <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F49917726%2Fretrieving-default-image-all-url-profile-picture-from-facebook-graph-api&psig=AOvVaw02XpmZd96eq4hVdRny25t-&ust=1738378117121000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKDP7qP5nosDFQAAAAAdAAAAABAE" alt="Anonymous">
+            <div>Anonymous</div>
+        </div>
+        <div class="host" id="host2">
+            <img src="" alt="Anonymous">
+            <div>Anonymous</div>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById('title').classList.add('fade-out');
+        }, 4000);
+
+        setTimeout(() => {
+            document.querySelector('.details').classList.add('show');
+        }, 5000);
+
+        setTimeout(() => {
+            document.querySelector('.hosts').classList.add('show');
+        }, 6000);
+    </script>
+</body>
+</html>

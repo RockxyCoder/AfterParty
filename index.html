@@ -10,7 +10,7 @@
             color: red;
             font-family: 'Courier New', monospace;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             flex-direction: column;
             height: 100vh;
@@ -19,18 +19,19 @@
             transition: background 2s ease-in-out;
         }
         .container {
-            opacity: 0;
-            animation: fadeIn 3s forwards;
             display: flex;
             flex-direction: column;
             align-items: center;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
         .typewriter {
-            font-size: 2rem;
+            font-size: 2.5rem;
             white-space: nowrap;
             overflow: hidden;
             border-right: 2px solid red;
@@ -42,13 +43,6 @@
         }
         @keyframes blink {
             50% { border-color: transparent; }
-        }
-        .fade-out {
-            animation: fadeOut 1s forwards;
-        }
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
         }
         .details {
             opacity: 0;
@@ -75,28 +69,23 @@
             transform: scale(1.1) rotate(-2deg);
             text-shadow: 0 0 20px red;
         }
-        .lund {
-            margin-top: 50px;
-            font-size: 2rem;
-            font-weight: bold;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: red;
-            text-shadow: 0 0 15px red;
-            transition: transform 0.3s ease-in-out;
+        .anonymous-section {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            margin-bottom: 20px;
         }
-        .lund:hover {
-            transform: scale(1.1);
-            text-shadow: 0 0 25px red;
+        .anonymous-section h2 {
+            font-size: 2rem;
+            color: white;
+            text-shadow: 0 0 10px red;
+            margin-bottom: 10px;
         }
         .hosts {
             display: flex;
             justify-content: center;
             gap: 20px;
-            position: absolute;
-            top: 40%;
             width: 100%;
-            opacity: 0;
         }
         .host {
             display: flex;
@@ -104,58 +93,84 @@
             align-items: center;
         }
         .host img {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             margin-bottom: 5px;
         }
         .host div {
             font-size: 1.5rem;
-        }
-        .song-button {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
             color: red;
-            font-size: 1.5rem;
-            text-decoration: none;
-            margin-left: -40px;
         }
-        .song-button:hover {
+        .upload-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .upload-button {
+            font-size: 1.5rem;
             color: white;
+            text-decoration: underline;
+            cursor: pointer;
+            background-color: black;
+            padding: 10px 20px;
+            border: 2px solid red;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+        }
+        .upload-button:hover {
+            color: red;
+            background-color: white;
+            text-shadow: 0 0 10px red;
+            border-color: white;
+        }
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .typewriter {
+                font-size: 1.8rem;
+            }
+            .hosts {
+                flex-direction: column;
+            }
+            .host img {
+                width: 80px;
+                height: 80px;
+            }
+            .details div, .details a {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="typewriter" id="title">After-Party 2025</div>
+    <div class="anonymous-section">
+        <h2>✨ Hosts ✨</h2>
         <div class="hosts" id="hosts">
             <div class="host">
-                <img src="default-profile.png" alt="Anonymous">
-                <div>Anonymous</div>
+                <img src="default-profile.png" alt="Host 1">
+                <div>Host 1</div>
             </div>
             <div class="host">
-                <img src="default-profile.png" alt="Anonymous">
-                <div>Anonymous</div>
+                <img src="default-profile.png" alt="Host 2">
+                <div>Host 2</div>
             </div>
         </div>
+    </div>
+    <div class="container">
+        <div class="typewriter" id="title">After-Party 2025</div>
         <div class="details" id="details">
             <a href="#"><span class="song-button">➜</span> 🎵 Suggest Songs</a>
             <div>⏳ Time: 11:00 PM</div>
             <div>📍 Place: Undisclosed Location</div>
-            <div class="lund">Lund Corporation</div>
+        </div>
+        <div class="upload-section">
+            <a href="https://drive.google.com/drive/folders/YOUR_SHARED_FOLDER_ID?usp=sharing" target="_blank" class="upload-button">📷 Upload Party Photos</a>
+            <p>Click the button above to upload photos to our shared Google Drive folder!</p>
         </div>
     </div>
     <script>
         setTimeout(() => {
-            document.getElementById('title').classList.add('fade-out');
-        }, 4000);
-        setTimeout(() => {
             document.getElementById('details').classList.add('show');
-        }, 5000);
-        setTimeout(() => {
-            document.getElementById('hosts').style.opacity = 1;
-        }, 6000);
+        }, 4000);
     </script>
 </body>
 </html>

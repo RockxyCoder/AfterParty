@@ -12,15 +12,18 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 100vh;
             overflow: hidden;
             text-align: center;
             transition: background 2s ease-in-out;
-            flex-direction: column;
         }
         .container {
             opacity: 0;
             animation: fadeIn 3s forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -51,7 +54,10 @@
             opacity: 0;
             transform: scale(0.8);
             transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-            margin-top: 50px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .show {
             opacity: 1;
@@ -59,7 +65,7 @@
         }
         .details a, .details div {
             display: block;
-            margin: 30px 0;
+            margin: 10px 0;
             font-size: 1.8rem;
             text-decoration: none;
             color: red;
@@ -85,76 +91,73 @@
         }
         .hosts {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             width: 100%;
             position: absolute;
-            bottom: 10%;
-            left: 0;
-            padding: 0 10%;
-            opacity: 0;
-            transition: opacity 2s ease-in-out;
-        }
-        .hosts.show {
-            opacity: 1;
+            top: 20%;
         }
         .host {
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            animation: fadeIn 2s forwards 2s;
         }
         .host img {
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            background: red;
-            filter: grayscale(100%);
+            margin-bottom: 5px;
         }
-        .host .name {
-            margin-top: 10px;
+        .host div {
             font-size: 1.5rem;
-            text-shadow: 0 0 10px red;
         }
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(2px, -2px); }
-            60% { transform: translate(-2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
+        .song-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: 2px solid red;
+            color: red;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
         }
-        .host:hover .name {
-            animation: glitch 0.3s infinite;
+        .song-button:hover {
+            background: red;
+            color: black;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="typewriter" id="title">After-Party 2025</div>
+        <div class="hosts">
+            <div class="host">
+                <img src="default-profile.png" alt="Anonymous">
+                <div>Anonymous</div>
+            </div>
+            <div class="host">
+                <img src="default-profile.png" alt="Anonymous">
+                <div>Anonymous</div>
+            </div>
+        </div>
         <div class="details">
             <a href="#">🎵 Suggest Songs</a>
+            <a href="#" class="song-button">Click Here ➜</a>
             <div>⏳ Time: 11:00 PM</div>
             <div>📍 Place: Undisclosed Location</div>
             <div class="lund">Lund Corporation</div>
         </div>
     </div>
-    <div class="hosts">
-        <div class="host">
-            <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F49917726%2Fretrieving-default-image-all-url-profile-picture-from-facebook-graph-api&psig=AOvVaw02XpmZd96eq4hVdRny25t-&ust=1738378117121000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKDP7qP5nosDFQAAAAAdAAAAABAE" alt="Host 1">
-            <div class="name">Anonymous</div>
-        </div>
-        <div class="host">
-            <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F49917726%2Fretrieving-default-image-all-url-profile-picture-from-facebook-graph-api&psig=AOvVaw02XpmZd96eq4hVdRny25t-&ust=1738378117121000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKDP7qP5nosDFQAAAAAdAAAAABAE" alt="Host 2">
-            <div class="name">Anonymous</div>
-        </div>
-    </div>
+
     <script>
         setTimeout(() => {
             document.getElementById('title').classList.add('fade-out');
         }, 4000);
+
         setTimeout(() => {
             document.querySelector('.details').classList.add('show');
         }, 5000);
-        setTimeout(() => {
-            document.querySelector('.hosts').classList.add('show');
-        }, 7000);
     </script>
 </body>
 </html>

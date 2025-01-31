@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>After-Party 2025</title>
-    <link rel="stylesheet" href="styles.css"> <!-- External CSS link -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
@@ -35,7 +35,7 @@
     </div>
 
     <script>
-        const partyTime = new Date("2025-02-01T00:00:00").getTime(); // Party is on February 1, 2025, at 12:00 AM
+        const partyTime = new Date("2025-02-01T00:00:00").getTime();
         let countdownInterval;
 
         function updateCountdown() {
@@ -65,18 +65,17 @@
 
         setTimeout(() => {
             document.getElementById('title').style.display = 'none';
-            document.getElementById('hosts').style.opacity = 1; // Hosts section shows up
+            document.getElementById('hosts').style.opacity = 1;
         }, 4000);
 
         setTimeout(() => {
-            document.getElementById('countdown').style.opacity = 1; // Countdown timer shows up
-            countdownInterval = setInterval(updateCountdown, 1000); // Start countdown
+            document.getElementById('countdown').style.opacity = 1;
+            countdownInterval = setInterval(updateCountdown, 1000);
         }, 5000);
 
         setTimeout(() => {
-            document.getElementById('details').classList.add('show'); // Show other details (suggest songs, upload photos)
+            document.getElementById('details').classList.add('show');
         }, 6000);
-
     </script>
 </body>
 </html>

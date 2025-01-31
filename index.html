@@ -156,20 +156,20 @@
             <h2>✨ Hosts ✨</h2>
             <div class="hosts">
                 <div class="host">
-                    <img src="default-profile.png" alt="Host 1">
+                    <img src="assets/default-profile.png" alt="Host 1">
                     <div>Host 1</div>
                 </div>
                 <div class="host">
-                    <img src="default-profile.png" alt="Host 2">
+                    <img src="assets/default-profile.png" alt="Host 2">
                     <div>Host 2</div>
                 </div>
             </div>
         </div>
 
-        <!-- Details Section -->
+    
         <div class="details" id="details">
             <a href="#">🎵 Suggest Songs</a>
-            <a href="https://drive.google.com/drive/folders/YOUR_SHARED_FOLDER_ID?usp=sharing" target="_blank">📷 Upload Party Photos</a>
+            <a href="https://drive.google.com/drive/folders/19ntr4n8O7tpmL22VEVygIa7O9PeOfX0T?usp=sharing" target="_blank">📷 Upload Party Photos</a>
             <div class="extra-info">
                 <div>⏳ Time: 11:00 PM</div>
                 <div>📍 Place: Undisclosed Location</div>
@@ -179,19 +179,19 @@
     </div>
 
     <script>
-        // Make title disappear after typing
+
         setTimeout(() => {
             document.getElementById('title').classList.add('fade-out');
         }, 3000);
 
-        // Show hosts after title disappears
+  
         setTimeout(() => {
             document.getElementById('title').style.display = 'none'; // Hide title
             const hostsSection = document.getElementById('hosts-section');
             hostsSection.style.display = 'block'; // Show hosts
         }, 4000);
 
-        // Show details after hosts
+ 
         setTimeout(() => {
             document.getElementById('details').classList.add('show');
         }, 5500);

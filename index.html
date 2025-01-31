@@ -84,7 +84,7 @@
         }
         .anonymous-section {
             text-align: center;
-            margin-top: 30px;
+            margin-bottom: 20px;
             opacity: 0;
             animation: fadeInUp 1.5s ease-in-out forwards;
         }
@@ -115,6 +115,19 @@
             font-size: 1.5rem;
             color: red;
         }
+        .lund {
+            margin-top: 30px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: red;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px red;
+        }
+        .extra-info div {
+            margin: 5px 0;
+            font-size: 1.3rem;
+        }
         /* Responsive Design */
         @media (max-width: 768px) {
             .typewriter {
@@ -137,26 +150,31 @@
     <div class="container">
         <!-- Typing Title -->
         <div class="typewriter" id="title">After-Party 2025</div>
-        
+
+        <!-- Hosts Section -->
+        <div class="anonymous-section" id="hosts-section" style="display: none;">
+            <h2>✨ Hosts ✨</h2>
+            <div class="hosts">
+                <div class="host">
+                    <img src="default-profile.png" alt="Host 1">
+                    <div>Host 1</div>
+                </div>
+                <div class="host">
+                    <img src="default-profile.png" alt="Host 2">
+                    <div>Host 2</div>
+                </div>
+            </div>
+        </div>
+
         <!-- Details Section -->
         <div class="details" id="details">
             <a href="#">🎵 Suggest Songs</a>
             <a href="https://drive.google.com/drive/folders/YOUR_SHARED_FOLDER_ID?usp=sharing" target="_blank">📷 Upload Party Photos</a>
-        </div>
-    </div>
-
-    <!-- Hosts Section -->
-    <div class="anonymous-section" id="hosts-section" style="display: none;">
-        <h2>✨ Hosts ✨</h2>
-        <div class="hosts">
-            <div class="host">
-                <img src="default-profile.png" alt="Host 1">
-                <div>Host 1</div>
+            <div class="extra-info">
+                <div>⏳ Time: 11:00 PM</div>
+                <div>📍 Place: Undisclosed Location</div>
             </div>
-            <div class="host">
-                <img src="default-profile.png" alt="Host 2">
-                <div>Host 2</div>
-            </div>
+            <div class="lund">Lund Corporation</div>
         </div>
     </div>
 
@@ -166,17 +184,17 @@
             document.getElementById('title').classList.add('fade-out');
         }, 3000);
 
-        // Show details after title disappears
+        // Show hosts after title disappears
         setTimeout(() => {
             document.getElementById('title').style.display = 'none'; // Hide title
-            document.getElementById('details').classList.add('show'); // Show details
+            const hostsSection = document.getElementById('hosts-section');
+            hostsSection.style.display = 'block'; // Show hosts
         }, 4000);
 
-        // Show hosts section with animation
+        // Show details after hosts
         setTimeout(() => {
-            const hostsSection = document.getElementById('hosts-section');
-            hostsSection.style.display = 'block';
-        }, 5000);
+            document.getElementById('details').classList.add('show');
+        }, 5500);
     </script>
 </body>
 </html>

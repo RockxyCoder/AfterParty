@@ -16,28 +16,16 @@
             overflow: hidden;
             text-align: center;
             transition: background 2s ease-in-out;
-            position: relative;
+            flex-direction: column;
         }
-        
-        @keyframes bgGlow {
-            0% { box-shadow: 0 0 10px red; }
-            50% { box-shadow: 0 0 40px red; }
-            100% { box-shadow: 0 0 10px red; }
-        }
-        
         .container {
             opacity: 0;
             animation: fadeIn 3s forwards;
-            padding: 20px;
-            border-radius: 10px;
-            animation: bgGlow 6s infinite alternate;
         }
-        
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        
         .typewriter {
             font-size: 2rem;
             white-space: nowrap;
@@ -45,37 +33,30 @@
             border-right: 2px solid red;
             animation: typing 3s steps(20, end), blink 0.7s step-end infinite;
         }
-        
         @keyframes typing {
             from { width: 0; }
             to { width: 100%; }
         }
-        
         @keyframes blink {
             50% { border-color: transparent; }
         }
-        
         .fade-out {
             animation: fadeOut 1s forwards;
         }
-        
         @keyframes fadeOut {
             from { opacity: 1; }
             to { opacity: 0; }
         }
-        
         .details {
             opacity: 0;
             transform: scale(0.8);
             transition: opacity 1s ease-in-out, transform 1s ease-in-out;
             margin-top: 50px;
         }
-        
         .show {
             opacity: 1;
             transform: scale(1);
         }
-        
         .details a, .details div {
             display: block;
             margin: 30px 0;
@@ -84,12 +65,10 @@
             color: red;
             transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
         }
-        
         .details a:hover, .details div:hover {
             transform: scale(1.1) rotate(-2deg);
             text-shadow: 0 0 20px red;
         }
-        
         .lund {
             margin-top: 50px;
             font-size: 2rem;
@@ -100,52 +79,49 @@
             text-shadow: 0 0 15px red;
             transition: transform 0.3s ease-in-out;
         }
-        
         .lund:hover {
             transform: scale(1.1);
             text-shadow: 0 0 25px red;
         }
-        
         .hosts {
-            position: absolute;
-            top: 50%;
-            width: 100%;
             display: flex;
             justify-content: space-between;
+            width: 100%;
+            position: absolute;
+            bottom: 10%;
+            left: 0;
+            padding: 0 10%;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 2s ease-in-out;
         }
-        
+        .hosts.show {
+            opacity: 1;
+        }
         .host {
+            text-align: center;
+        }
+        .host img {
             width: 80px;
             height: 80px;
-            background: black;
-            border: 2px solid red;
             border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 0.8rem;
-            color: red;
-            transition: filter 0.3s ease-in-out;
+            background: red;
+            filter: grayscale(100%);
         }
-        
-        .host:hover {
-            filter: brightness(1.5) contrast(2);
-            animation: glitch 0.2s steps(4, end) infinite;
-        }
-        
-        @keyframes glitch {
-            0% { transform: translate(1px, -1px) rotate(1deg); }
-            25% { transform: translate(-1px, 2px) rotate(-1deg); }
-            50% { transform: translate(2px, 0px) rotate(1deg); }
-            75% { transform: translate(-2px, -2px) rotate(-1deg); }
-            100% { transform: translate(0, 0) rotate(0); }
-        }
-        
-        .countdown {
+        .host .name {
+            margin-top: 10px;
             font-size: 1.5rem;
-            margin-top: 20px;
+            text-shadow: 0 0 10px red;
+        }
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        .host:hover .name {
+            animation: glitch 0.3s infinite;
         }
     </style>
 </head>
@@ -154,40 +130,31 @@
         <div class="typewriter" id="title">After-Party 2025</div>
         <div class="details">
             <a href="#">🎵 Suggest Songs</a>
-            <div class="countdown" id="countdown">⏳ Loading...</div>
+            <div>⏳ Time: 11:00 PM</div>
             <div>📍 Place: Undisclosed Location</div>
             <div class="lund">Lund Corporation</div>
         </div>
     </div>
-    <div class="hosts" id="hosts">
-        <div class="host">Anonymous</div>
-        <div class="host">Anonymous</div>
+    <div class="hosts">
+        <div class="host">
+            <img src="default-profile.png" alt="Host 1">
+            <div class="name">Anonymous</div>
+        </div>
+        <div class="host">
+            <img src="default-profile.png" alt="Host 2">
+            <div class="name">Anonymous</div>
+        </div>
     </div>
-
     <script>
         setTimeout(() => {
             document.getElementById('title').classList.add('fade-out');
         }, 4000);
-
         setTimeout(() => {
             document.querySelector('.details').classList.add('show');
-            document.getElementById('hosts').style.opacity = '1';
         }, 5000);
-        
-        function updateCountdown() {
-            const eventTime = new Date("March 1, 2025 23:00:00").getTime();
-            const now = new Date().getTime();
-            const diff = eventTime - now;
-            if (diff > 0) {
-                const hours = Math.floor(diff / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-                document.getElementById("countdown").innerText = `⏳ Time: ${hours}h ${minutes}m ${seconds}s`;
-            } else {
-                document.getElementById("countdown").innerText = "⏳ The party has begun!";
-            }
-        }
-        setInterval(updateCountdown, 1000);
+        setTimeout(() => {
+            document.querySelector('.hosts').classList.add('show');
+        }, 7000);
     </script>
 </body>
 </html>

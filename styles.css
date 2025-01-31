@@ -9,6 +9,7 @@ body {
     height: 100vh;
     overflow: hidden;
     text-align: center;
+    transition: background 2s ease-in-out;
 }
 
 .container {
@@ -100,7 +101,7 @@ body {
     justify-content: center;
     gap: 20px;
     position: absolute;
-    top: 30%;
+    top: 10%;  /* Adjusted to place it higher on the page */
     width: 100%;
     opacity: 0;
     transition: opacity 1s ease-in-out;
@@ -113,40 +114,75 @@ body {
 }
 
 .host img {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    object-fit: cover;
+    object-fit: cover;  /* Prevents image stretching */
     margin-bottom: 5px;
 }
 
 .host div {
     font-size: 1.5rem;
+    color: white;
 }
 
-.song-button {
+.song-button, .upload-button {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
     color: red;
     font-size: 1.5rem;
     text-decoration: none;
-    margin-left: -40px;
+    background-color: transparent;
+    border: 2px solid red;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
 
-.song-button:hover {
+.song-button:hover, .upload-button:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 20px red;
+}
+
+.extra-info {
+    font-size: 1.2rem;
     color: white;
+    margin-top: 15px;
 }
 
 .countdown {
     font-size: 2rem;
-    margin-top: 20px;
     color: red;
-    font-weight: bold;
+    margin-top: 20px;
     opacity: 0;
     transition: opacity 1s ease-in-out;
 }
 
-.extra-info {
-    margin-top: 20px;
+.fade-out {
+    animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+    .host img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .details a, .details div {
+        font-size: 1.5rem;
+    }
+
+    .song-button, .upload-button {
+        font-size: 1.3rem;
+        padding: 8px 15px;
+    }
+
+    .countdown {
+        font-size: 1.8rem;
+    }
 }

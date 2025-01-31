@@ -6,7 +6,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    heig
+    height: 100vh;
     overflow: hidden;
     text-align: center;
 }

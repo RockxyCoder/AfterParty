@@ -16,19 +16,33 @@
             height: 100vh;
             overflow: hidden;
             text-align: center;
-            transition: background 2s ease-in-out;
         }
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         .typewriter {
             font-size: 2.5rem;
@@ -37,12 +51,8 @@
             border-right: 2px solid red;
             animation: typing 3s steps(20, end), blink 0.7s step-end infinite;
         }
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        @keyframes blink {
-            50% { border-color: transparent; }
+        .fade-out {
+            animation: fadeOut 1s forwards;
         }
         .details {
             opacity: 0;
@@ -57,23 +67,26 @@
             opacity: 1;
             transform: scale(1);
         }
-        .details a, .details div {
-            display: block;
+        .details a {
+            display: inline-block;
             margin: 10px 0;
-            font-size: 1.8rem;
-            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 1.5rem;
             color: red;
-            transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+            text-decoration: none;
+            border: 2px solid red;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
         }
-        .details a:hover, .details div:hover {
-            transform: scale(1.1) rotate(-2deg);
-            text-shadow: 0 0 20px red;
+        .details a:hover {
+            color: black;
+            background: red;
         }
         .anonymous-section {
-            position: relative;
-            z-index: 10;
             text-align: center;
-            margin-bottom: 20px;
+            margin-top: 30px;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease-in-out forwards;
         }
         .anonymous-section h2 {
             font-size: 2rem;
@@ -102,28 +115,7 @@
             font-size: 1.5rem;
             color: red;
         }
-        .upload-section {
-            margin-top: 30px;
-            text-align: center;
-        }
-        .upload-button {
-            font-size: 1.5rem;
-            color: white;
-            text-decoration: underline;
-            cursor: pointer;
-            background-color: black;
-            padding: 10px 20px;
-            border: 2px solid red;
-            border-radius: 8px;
-            transition: all 0.3s ease-in-out;
-        }
-        .upload-button:hover {
-            color: red;
-            background-color: white;
-            text-shadow: 0 0 10px red;
-            border-color: white;
-        }
-        /* Responsive design */
+        /* Responsive Design */
         @media (max-width: 768px) {
             .typewriter {
                 font-size: 1.8rem;
@@ -135,16 +127,28 @@
                 width: 80px;
                 height: 80px;
             }
-            .details div, .details a {
+            .details a {
                 font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="anonymous-section">
+    <div class="container">
+        <!-- Typing Title -->
+        <div class="typewriter" id="title">After-Party 2025</div>
+        
+        <!-- Details Section -->
+        <div class="details" id="details">
+            <a href="#">🎵 Suggest Songs</a>
+            <a href="https://drive.google.com/drive/folders/YOUR_SHARED_FOLDER_ID?usp=sharing" target="_blank">📷 Upload Party Photos</a>
+        </div>
+    </div>
+
+    <!-- Hosts Section -->
+    <div class="anonymous-section" id="hosts-section" style="display: none;">
         <h2>✨ Hosts ✨</h2>
-        <div class="hosts" id="hosts">
+        <div class="hosts">
             <div class="host">
                 <img src="default-profile.png" alt="Host 1">
                 <div>Host 1</div>
@@ -155,22 +159,24 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="typewriter" id="title">After-Party 2025</div>
-        <div class="details" id="details">
-            <a href="#"><span class="song-button">➜</span> 🎵 Suggest Songs</a>
-            <div>⏳ Time: 11:00 PM</div>
-            <div>📍 Place: Undisclosed Location</div>
-        </div>
-        <div class="upload-section">
-            <a href="https://drive.google.com/drive/folders/YOUR_SHARED_FOLDER_ID?usp=sharing" target="_blank" class="upload-button">📷 Upload Party Photos</a>
-            <p>Click the button above to upload photos to our shared Google Drive folder!</p>
-        </div>
-    </div>
+
     <script>
+        // Make title disappear after typing
         setTimeout(() => {
-            document.getElementById('details').classList.add('show');
+            document.getElementById('title').classList.add('fade-out');
+        }, 3000);
+
+        // Show details after title disappears
+        setTimeout(() => {
+            document.getElementById('title').style.display = 'none'; // Hide title
+            document.getElementById('details').classList.add('show'); // Show details
         }, 4000);
+
+        // Show hosts section with animation
+        setTimeout(() => {
+            const hostsSection = document.getElementById('hosts-section');
+            hostsSection.style.display = 'block';
+        }, 5000);
     </script>
 </body>
 </html>

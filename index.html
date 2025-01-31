@@ -4,172 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>After-Party 2025</title>
-    <style>
-        body {
-            background: black;
-            color: red;
-            font-family: 'Courier New', monospace;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
-            overflow: hidden;
-            text-align: center;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .typewriter {
-            font-size: 2.5rem;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 2px solid red;
-            animation: typing 3s steps(20, end), blink 0.7s step-end infinite;
-        }
-        .fade-out {
-            animation: fadeOut 1s forwards;
-        }
-        .details {
-            opacity: 0;
-            transform: scale(0.8);
-            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .show {
-            opacity: 1;
-            transform: scale(1);
-        }
-        .details a {
-            display: inline-block;
-            margin: 10px 0;
-            padding: 10px 20px;
-            font-size: 1.5rem;
-            color: red;
-            text-decoration: none;
-            border: 2px solid red;
-            border-radius: 8px;
-            transition: all 0.3s ease-in-out;
-        }
-        .details a:hover {
-            color: black;
-            background: red;
-        }
-        .anonymous-section {
-            text-align: center;
-            margin-bottom: 20px;
-            opacity: 0;
-            animation: fadeInUp 1.5s ease-in-out forwards;
-        }
-        .anonymous-section h2 {
-            font-size: 2rem;
-            color: white;
-            text-shadow: 0 0 10px red;
-            margin-bottom: 10px;
-        }
-        .hosts {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            width: 100%;
-        }
-        .host {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .host img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin-bottom: 5px;
-        }
-        .host div {
-            font-size: 1.5rem;
-            color: red;
-        }
-        .lund {
-            margin-top: 30px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: red;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-shadow: 0 0 10px red;
-        }
-        .extra-info div {
-            margin: 5px 0;
-            font-size: 1.3rem;
-        }
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .typewriter {
-                font-size: 1.8rem;
-            }
-            .hosts {
-                flex-direction: column;
-            }
-            .host img {
-                width: 80px;
-                height: 80px;
-            }
-            .details a {
-                font-size: 1.2rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <!-- Typing Title -->
         <div class="typewriter" id="title">After-Party 2025</div>
 
-        <!-- Hosts Section -->
-        <div class="anonymous-section" id="hosts-section" style="display: none;">
+        <div class="countdown" id="countdown"></div>
+
+        <div class="anonymous-section" id="hosts-section">
             <h2>✨ Hosts ✨</h2>
             <div class="hosts">
                 <div class="host">
-                    <img src="assets/default-profile.png" alt="Host 1">
+                    <img src="images/host1.jpg" alt="Host 1">
                     <div>Host 1</div>
                 </div>
                 <div class="host">
-                    <img src="assets/default-profile.png" alt="Host 2">
+                    <img src="images/host2.jpg" alt="Host 2">
                     <div>Host 2</div>
                 </div>
             </div>
         </div>
 
-    
         <div class="details" id="details">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdBUS5mCdJjFk7f4IUSgqIR6rA1cw-4wS30ttx4RyGjaNuHIw/viewform?usp=sharing" target="_blank">🎵 Suggest Songs</a>
-            <a href="https://drive.google.com/drive/folders/19ntr4n8O7tpmL22VEVygIa7O9PeOfX0T?usp=sharing" target="_blank">📷 Upload Party Photos</a>
+            <a href="https://forms.gle/exampleLink" target="_blank">🎵 Suggest Songs</a>
+            <a href="https://drive.google.com/drive/folders/YOUR_SHARED_FOLDER_ID?usp=sharing" target="_blank">📷 Upload Party Photos</a>
             <div class="extra-info">
                 <div>⏳ Time: 11:00 PM</div>
                 <div>📍 Place: Undisclosed Location</div>
@@ -179,19 +38,41 @@
     </div>
 
     <script>
+        const partyTime = new Date("2025-01-30T23:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = partyTime - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML =
+                days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("countdown").innerHTML = "Party Time!";
+                document.body.style.backgroundColor = "black";
+                document.body.style.color = "white";
+                document.body.classList.add("fade-out");
+            }
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
 
         setTimeout(() => {
             document.getElementById('title').classList.add('fade-out');
         }, 3000);
 
-  
         setTimeout(() => {
-            document.getElementById('title').style.display = 'none'; // Hide title
+            document.getElementById('title').style.display = 'none';
             const hostsSection = document.getElementById('hosts-section');
-            hostsSection.style.display = 'block'; // Show hosts
+            hostsSection.style.display = 'block';
         }, 4000);
 
- 
         setTimeout(() => {
             document.getElementById('details').classList.add('show');
         }, 5500);

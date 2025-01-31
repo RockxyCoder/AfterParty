@@ -1,152 +1,84 @@
-body {
-    background: black;
-    color: red;
-    font-family: 'Courier New', monospace;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh;
-    overflow: hidden;
-    text-align: center;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>After-Party 2025</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="typewriter" id="title">After-Party 2025</div>
 
-.container {
-    opacity: 0;
-    animation: fadeIn 3s forwards;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        <div class="hosts" id="hosts">
+            <div class="host">
+                <img src="images/host1.jpg" alt="Host 1">
+                <div>Host 1</div>
+            </div>
+            <div class="host">
+                <img src="images/host2.jpg" alt="Host 2">
+                <div>Host 2</div>
+            </div>
+        </div>
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+        <div class="details" id="details">
+            <a href="https://forms.gle/exampleLink" target="_blank">🎵 Suggest Songs</a>
+            <a href="https://drive.google.com/drive/folders/YOUR_SHARED_FOLDER_ID?usp=sharing" target="_blank">📷 Upload Party Photos</a>
+            <div class="extra-info">
+                <div>⏳ Time: 11:00 PM</div>
+                <div>📍 Place: Undisclosed Location</div>
+            </div>
+            <div class="lund">Lund Corporation</div>
+        </div>
 
-.typewriter {
-    font-size: 2rem;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 2px solid red;
-    animation: typing 3s steps(20, end), blink 0.7s step-end infinite;
-}
+        <div class="countdown" id="countdown"></div>
+    </div>
 
-@keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-}
+    <script>
+        const partyTime = new Date("2025-02-01T00:00:00").getTime();
+        let countdownInterval;
 
-@keyframes blink {
-    50% { border-color: transparent; }
-}
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = partyTime - now;
 
-.fade-out {
-    animation: fadeOut 1s forwards;
-}
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
+            document.getElementById("countdown").innerHTML =
+                days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
-.details {
-    opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("countdown").innerHTML = "Party Time!";
+                document.body.style.backgroundColor = "black";
+                document.body.style.color = "white";
+                document.body.classList.add("fade-out");
+            }
+        }
 
-.show {
-    opacity: 1;
-    transform: scale(1);
-}
+        setTimeout(() => {
+            document.getElementById('title').classList.add('fade-out');
+        }, 3000);
 
-.details a, .details div {
-    display: block;
-    margin: 10px 0;
-    font-size: 1.8rem;
-    text-decoration: none;
-    color: red;
-    transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
-}
+        setTimeout(() => {
+            document.getElementById('title').style.display = 'none';
+        }, 4000);
 
-.details a:hover, .details div:hover {
-    transform: scale(1.1) rotate(-2deg);
-    text-shadow: 0 0 20px red;
-}
+        setTimeout(() => {
+            document.getElementById('hosts').style.opacity = 1;
+        }, 5000);
 
-.lund {
-    margin-top: 50px;
-    font-size: 2rem;
-    font-weight: bold;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: red;
-    text-shadow: 0 0 15px red;
-    transition: transform 0.3s ease-in-out;
-}
+        setTimeout(() => {
+            document.getElementById('countdown').style.opacity = 1;
+            countdownInterval = setInterval(updateCountdown, 1000);
+        }, 6000);
 
-.lund:hover {
-    transform: scale(1.1);
-    text-shadow: 0 0 25px red;
-}
-
-.hosts {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    position: absolute;
-    top: 30%;
-    width: 100%;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.host {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.host img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-bottom: 5px;
-}
-
-.host div {
-    font-size: 1.5rem;
-}
-
-.song-button {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 20px;
-    color: red;
-    font-size: 1.5rem;
-    text-decoration: none;
-    margin-left: -40px;
-}
-
-.song-button:hover {
-    color: white;
-}
-
-.countdown {
-    font-size: 2rem;
-    margin-top: 20px;
-    color: red;
-    font-weight: bold;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.extra-info {
-    margin-top: 20px;
-}
-
+        setTimeout(() => {
+            document.getElementById('details').classList.add('show');
+        }, 7000);
+    </script>
+</body>
+</html>
